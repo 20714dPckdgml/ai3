@@ -74,6 +74,12 @@ CONTENT_BY_LABEL: dict[str, dict[str, list[str]]] = {
        "images": ["https://i.namu.wiki/i/pTVoWDp5G09PGTRUTbCy8raXo9CB47uF2wcuzdUYTlPwRjU6zjl0Reoih4MIXXRTnfxVl-yKlPjTQSVhAbfSxA.webp"],
        "videos": ["https://www.youtube.com/watch?v=W1JkSPEbyEM"]
      },
+
+    labels[1]: {
+       "texts": ["파스타는 가성비 음식이다."],
+       "images": ["https://static.wtable.co.kr/image/production/service/recipe/1974/e3d221c1-c303-44b1-8540-36d1a7d64452.jpg?size=800x800"],
+       "videos": ["https://www.youtube.com/watch?v=bhbf8-kFEQU"]
+     },
 }
 
 # ======================
