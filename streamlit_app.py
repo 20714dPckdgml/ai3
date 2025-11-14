@@ -83,6 +83,10 @@ CONTENT_BY_LABEL: dict[str, dict[str, list[str]]] = {
     
     labels[2]: {
        "texts": ["피자thumb-wrap { position:relative; display:block; }
+       "images": ["https://static.wtable.co.kr/image/production/service/recipe/1974/e3d221c1-c303-44b1-8540-36d1a7d64452.jpg?size=800x800"],
+       "videos": ["https://www.youtube.com/watch?v=bhbf8-kFEQU"]
+
+                 
 .play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:60px; border-radius:50%; background:rgba(0,0,0,.55); }
 .play:after{ content:''; border-style:solid; border-width:12px 0 12px 20px; border-color:transparent transparent transparent #fff; position:absolute; top:50%; left:50%; transform:translate(-40%,-50%); }
 .helper { color:#607D8B; font-size:.9rem; }
