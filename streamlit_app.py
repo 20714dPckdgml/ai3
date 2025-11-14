@@ -79,7 +79,70 @@ CONTENT_BY_LABEL: dict[str, dict[str, list[str]]] = {
        "texts": ["파스타는 가성비 음식이다."],
        "images": ["https://static.wtable.co.kr/image/production/service/recipe/1974/e3d221c1-c303-44b1-8540-36d1a7d64452.jpg?size=800x800"],
        "videos": ["https://www.youtube.com/watch?v=bhbf8-kFEQU"]
+    },
+    
+    labels[2]: {
+       "texts": ["피자thumb-wrap { position:relative; display:block; }
+.play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:60px; border-radius:50%; background:rgba(0,0,0,.55); }
+.play:after{ content:''; border-style:solid; border-width:12px 0 12px 20px; border-color:transparent transparent transparent #fff; position:absolute; top:50%; left:50%; transform:translate(-40%,-50%); }
+.helper { color:#607D8B; font-size:.9rem; }
+.stFileUploader, .stCameraInput { border:2px dashed #1E88E5; border-radius:12px; padding:16px; background:#f5fafe; }
+</style>
+""", unsafe_allow_html=True)
+
+st.title("이미지 분류기 (Fastai) — 확률 막대 + 라벨별 고정 콘텐츠")
+
+# ======================
+# 세션 상태
+# ======================
+if "img_bytes" not in st.session_state:
+    st.session_state.img_bytes = None
+if "last_prediction" not in st.session_state:
+    st.session_state.last_prediction = None
+
+# ======================
+# 모델 로드
+# ======================
+FILE_ID = st.secrets.get("GDRIVE_FILE_ID", "1uj2lD8goJDLo9uSg_8HcT4bxnl2trPc8")
+MODEL_PATH = st.secrets.get("MODEL_PATH", "model.pkl")
+
+@st.cache_resource
+def load_model_from_drive(file_id: str, output_path: str):
+    if not os.path.exists(output_path):
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, output_path, quiet=False)
+    return load_learner(output_path, cpu=True)
+
+with st.spinner("🤖 모델 로드 중..."):
+    learner = load_model_from_drive(FILE_ID, MODEL_PATH)
+st.success("✅ 모델 로드 완료")
+
+labels = [str(x) for x in learner.dls.vocab]
+st.write(f"**분류 가능한 항목:** `{', '.join(labels)}`")
+st.markdown("---")
+
+# ======================
+# 라벨 이름 매핑: 여기를 채우세요!
+# 각 라벨당 최대 3개씩 표시됩니다.
+# ======================
+CONTENT_BY_LABEL: dict[str, dict[str, list[str]]] = {
+    
+    labels[0]: {
+       "texts": ["치킨은 흑인음식이다."],
+       "images": ["https://i.namu.wiki/i/pTVoWDp5G09PGTRUTbCy8raXo9CB47uF2wcuzdUYTlPwRjU6zjl0Reoih4MIXXRTnfxVl-yKlPjTQSVhAbfSxA.webp"],
+       "videos": ["https://www.youtube.com/watch?v=W1JkSPEbyEM"]
      },
+
+    labels[1]: {
+       "texts": ["파스타는 가성비 음식이다."],
+       "images": ["https://static.wtable.co.kr/image/production/service/recipe/1974/e3d221c1-c303-44b1-8540-36d1a7d64452.jpg?size=800x800"],
+       "videos": ["https://www.youtube.com/watch?v=bhbf8-kFEQU"]
+    },
+    
+    labels[2]: {
+       "texts": ["피자 라는 단어는 서기 997년, 이탈리아 남부 캄파냐와 경계를 접한 라치오의 가에타 마을에서 나온 라틴어 문서에 처음 기록되었다."],
+       "images": ["https://dimg.donga.com/wps/NEWS/IMAGE/2024/03/19/124032496.4.jpg"],
+       "videos": ["https://www.youtube.com/watch?v=zU5F8u08LD8"]
 }
 
 # ======================
