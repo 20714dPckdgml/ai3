@@ -82,7 +82,7 @@ CONTENT_BY_LABEL: dict[str, dict[str, list[str]]] = {
     },
     
     labels[2]: {
-       "texts": ["피자는 밀가루로 만든 반죽에 토마토 소스와 치즈 등 토핑을 얹어서 구워 내는 이탈리아 요리이다." }
+       "texts": ["피자는 밀가루로 만든 반죽에 토마토 소스와 치즈 등 토핑을 얹어서 구워 내는 이탈리아 요리이다."]
        "images": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHdIZsXHepmaY0KB-sa24dP2oX8EYgMjeEYTVoqAa-8Zs8CVSC9QehUTk_cxOSKxJWhRAfOo7MZo4pvkcJrDvjuPvKLMkjA3-x1mwVqKv3&s=10"],
        "videos": ["https://www.youtube.com/watch?v=zU5F8u08LD8"]
     },
